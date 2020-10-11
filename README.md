@@ -1,5 +1,8 @@
 # kahoot-bot-spammer  
  Spam Kahoot with bots - node.js  
+ 
+# DEMO  
+ ![demo](https://github.com/aidanbxyz/kahoot-bot-spammer/blob/master/demo.gif?raw=true)
 
 # How to use  
  ## 1. Clone this repo  
