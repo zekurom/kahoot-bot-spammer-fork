@@ -9,13 +9,13 @@
  `git clone https://github.com/aidanbxyz/kahoot-bot-spammer.git`  
  ## 2. Install required packages
  ```
- npm install kahoot.js-updated  
  npm install system-sleep
  ```
  ## 3. Rename "node_modules.a" to "node_modules"
  ```
  mv node_modules.a node_modules
  ```
+ Reason: kahoot.js-updated has been removed, but I still have an archived version
  ## 4. Edit variables
  **ONLY EDIT VARIABLES BETWEEN THE `// main vars` AND `// end main vars` COMMENTS**  
  `const kahootCode = 1234567;` This is where your Kahoot game code goes. example: `const kahootCode = 9088726;`  
