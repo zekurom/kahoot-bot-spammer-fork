@@ -1,0 +1,37 @@
+const Kahoot = require("kahoot.js-latest");
+const sleep = require("system-sleep");
+const readline = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+const code = '396448'
+const bots = 15
+var i = 0
+
+async function e (p) {
+	let a = p
+	let client = new Kahoot();
+	client.setMaxListeners(Number.POSITIVE_INFINITY);
+	await client.join(code /* Or any other kahoot game pin */, `kahoot${a}`).catch((err) => {console.log(err)})
+	console.log(a+" Joining kahoot...");
+	client.on("Joined", () => {
+	  console.log(`${a} joined the Kahoot!`);
+	});
+	client.on("QuizStart", () => {
+	  console.log("The quiz has started!");
+	});
+	client.on("QuestionStart", question => {
+	  console.log("A new question has started, answering the first answer.");
+	  question.answer(0);
+	});
+	client.on("QuizEnd", () => {
+	  console.log("The quiz has ended.");
+	});
+}
+
+while (i <= bots) {
+	e(i)
+	i=i+1
+	sleep(350)
+}

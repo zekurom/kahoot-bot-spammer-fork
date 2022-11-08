@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang='en-US'>
+<head>
+  <title>Kahootinator &gt;:D</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content=
+  "width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <meta name="author" content="Aiden E">
+  <meta name="description" content="Kahoot flooder &gt;:D">
+  <meta name="language" content="English">
+  <link rel="icon" href="icon.png">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class='background'></div>
+  <div class='container'>
+    <div class='title'>
+      Kahoot Flooder
+    </div>
+    <div class='explanation'>
+      Deploy hundreds of bots to infiltrate and take
+      over any public Kahoot game!<br>
+      Use wisely... This tool is not responsible for any
+      consequences from use.
+    </div><br>
+    <br>
+    <div class='form'>
+      Game PIN:<br>
+      <input class='input' type='number' id='pin' placeholder=
+      '0000000'><br>
+      <span class='error' id='pinError'></span><br>
+      Bot Names, separated by commas:<br>
+      (Each bot will choose a random one of these names)<br>
+      <input class='input' type='text' id='name' placeholder=
+      'Joe,Bob,Billy' value='Joe,Bob,Billy'><br>
+      <span class='error' id='nameError'></span><br>
+      <label for="ans">Bot will answer:</label><br>
+      <br>
+      Number of bots:<br>
+      <input class='input' type='number' id='num' placeholder='10'
+      value='10'><br>
+      <span class='error' id='numError'></span><br>
+      <button class='button' onclick="go()" id=
+      "button">Flood</button><br>
+      <span id='success' class='success'></span>
+    </div>
+  </div>
+  <script type="text/javascript" src="document.js"></script>
+</body>
+</html>
