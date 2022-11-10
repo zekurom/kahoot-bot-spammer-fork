@@ -1,3 +1,2 @@
-rm -r node_modules
-cp -r backup/node_modules.a ./
-mv node_modules.a node_modules
+rm -r node_modules/kahootjs-latest
+cp -r backup/kahootjs-latest node_modules/

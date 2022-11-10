@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang='en-US'>
+<head>
+  <title>Kahootinator &gt;:D</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content=
+  "width=device-width, height=device-height, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+  <meta name="author" content="Aiden E">
+  <meta name="description" content="Kahoot flooder &gt;:D">
+  <meta name="language" content="English">
+  <link rel="icon" href="icon.png">
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <div class='background'></div>
+  <div class='container'>
+    <div class='title'>
+      Kahoot Flooder
+    </div>
+    <div class='explanation'>
+		<label>Uploading Document: <progress value="70" max="100">70 %</progress></label>
+
+</div>
+    </div><br>
+    <br>
+    <div class='form'>
+      Game PIN:<br>
+      <input class='input' type='number' id='pin' placeholder=
+      '0000000'><br>
+      <span class='error' id='pinError'></span><br>
+      Bot Names, separated by commas:<br>
+      (Each bot will choose a random one of these names)<br>
+      <input class='input' type='text' id='name' placeholder=
+      'Joe,Bob,Billy' value='Joe,Bob,Billy'><br>
+      <span class='error' id='nameError'></span><br>
+      <br>
+      Number of bots:<br>
+      <input class='input' type='number' id='num' placeholder='10'
+      value='10'><br>
+      <span class='error' id='numError'></span><br>
+	  <input type="checkbox" id="ctrl" name="ctrl1">
+	  <label for="ctrl1"> Control bot answers?</label><br>
+      <button class='button' id=
+      "button">Flood</button><br>
+      <span id='success' class='success'></span>
+    </div>
+  </div>
+  <script type="module">																																										
+	import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
+	window.socket = io();
+	const socket = window.socket
+	socket.emit('clientMessage', 'Client connected', 'Pi-Voyager')
+	document.getElementById('button').addEventListener("click", go);
+
+	function go() {
+		var valid = true;
+		var pin = document.getElementById('pin').value.toString()
+		if (pin.length <= 2 || pin.length > 10) {
+		    document.getElementById('pinError').innerHTML = 'Error: Invalid Game PIN<br>';
+		    valid = false;
+		} else {
+		    document.getElementById('pinError').innerHTML = '';
+		}
+		var name = document.getElementById('name').value.replace(/\,\s/g, ',');
+		if (name.length < 1) {
+		    document.getElementById('nameError').innerHTML = 'Error: Enter at least 1 name<br>';
+		    valid = false;
+		} else {
+		    document.getElementById('nameError').innerHTML = '';
+		}
+		var num = Number(document.getElementById('num').value);
+		if (num < 1 || num > 2000) {
+		    document.getElementById('numError').innerHTML = 'Error: Must be between 1-2000<br>';
+		    valid = false;
+		} else {
+		    document.getElementById('numError').innerHTML = '';
+		}
+		if (valid) {
+		    document.getElementById('button').innerHTML = ' Joining... ';
+		    document.getElementById('success').innerHTML = '';
+		    let send = `{ "uid":"${Date.now()}", "pin":"${pin}", "names":"${encodeURIComponent(name)}", "numBots":"${num}", "ctrl":"${document.getElementById('ctrl').checked}" }`
+			console.log(send)
+			socket.emit('flood', send)
+		}
+
+		socket.on('flooded', () => {
+			document.getElementById('button').innerHTML = 'Flood';
+		    document.getElementById('success').innerHTML = 'Success';
+		})
+	}
+  </script>
+</body>
+</html>
